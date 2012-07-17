@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+		<project.build.testSourceEncoding>UTF-8</project.build.testSourceEncoding>
+		<project.build.testResourceEncoding>UTF-8</project.build.testResourceEncoding>
+	</properties>
+
+	<groupId>ru.proxima.commons</groupId>
+	<artifactId>ajax</artifactId>
+	<version>0.0-SNAPSHOT</version>
+
+	<name>AJAX/servlet implementation</name>
+	<description>Движок для автоматизированной загрузки классов, реализующих AJAX; удобного вызова и группирования их по модулям</description>
+	<url>https://github.com/22c-proxima/ajax</url>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>ru.proxima.commons</groupId>
+			<artifactId>json</artifactId>
+			<version>0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+
+<!-- Fresh commons-fileupload dependency -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.1</version>
+			<scope>runtime</scope>
+		</dependency>
+
+<!-- Provided by tomcat, glassfish or other java application servers -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+    <build>
+
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>Attach sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.8</version>
+				<executions>
+					<execution>
+						<id>Attach javadoc</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+    </build>
+
+</project>
