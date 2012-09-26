@@ -115,12 +115,18 @@ public final class AJAX extends HttpServlet {
 					handler.process(ajaxRequest, ajaxResponse);
 					break;
 				case JSON_INPUT:
+					if (params == null) {
+						throw new AJAXExecuteException("No params object provided");
+					}
 					response.setContentType(handler.getContentType());
 					out = response.getWriter();
 					handler.process(params, out);
 					out.close();
 					break;
 				case JSON_INPUT_RAW:
+					if (params == null) {
+						throw new AJAXExecuteException("No params object provided");
+					}
 					handler.process(params, ajaxResponse);
 					break;
 				case JSON_OUTPUT:
@@ -130,6 +136,9 @@ public final class AJAX extends HttpServlet {
 					out.close();
 					break;
 				case JSON_IN_OUT:
+					if (params == null) {
+						throw new AJAXExecuteException("No params object provided");
+					}
 					response.setContentType(handler.getContentType());
 					out = response.getWriter();
 					out.print(handler.process(params).toString());
