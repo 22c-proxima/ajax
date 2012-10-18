@@ -95,7 +95,8 @@ public final class AJAX extends HttpServlet {
 			if (null != paramsStr) {
 				params = new JSONObject(paramsStr);
 				Long userId = (Long)request.getSession().getAttribute("userId");
-				params.putOpt("userId", userId);
+				params.putOnce("userId", userId);
+				params.putOnce("remoteAddr", request.getRemoteAddr());
 			}
 		} catch (JSONException ex) {
 			logger.debug("Не удалось установить параметр ID пользователя", ex);
