@@ -12,7 +12,7 @@
 
 	<groupId>ru.proxima.commons</groupId>
 	<artifactId>ajax</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.2-SNAPSHOT</version>
 
 	<name>AJAX/servlet implementation</name>
 	<description>Движок для автоматизированной загрузки классов, реализующих AJAX; удобного вызова и группирования их по модулям</description>
@@ -62,7 +62,7 @@
 
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2</version>
+				<version>2.2.1</version>
 				<executions>
 					<execution>
 						<id>Attach sources</id>

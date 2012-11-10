@@ -2,7 +2,9 @@ package ru.proxima.commons.ajax.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.ServiceLoader;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -148,6 +150,11 @@ public final class AJAX extends HttpServlet {
 			} // switch (handler.getHandlerType()) {
 		} catch (AJAXExecuteException ex) {
 			logger.error("Ошибка исполнения AJAX-запроса", ex);
+			logger.debug("Exception context:");
+			for (Entry<String, String[]> pair : request.getParameterMap().entrySet()) {
+				logger.debug("\tRequest param: " + pair.getKey() + " = '" + Arrays.toString(pair.getValue()));
+			}
+
 			switch (handler.getHandlerType()) {
 				case JSON_OUTPUT:
 				case JSON_IN_OUT:
