@@ -3,6 +3,7 @@ package ru.proxima.commons.ajax.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.ServiceLoader;
@@ -150,9 +151,20 @@ public final class AJAX extends HttpServlet {
 			} // switch (handler.getHandlerType()) {
 		} catch (AJAXExecuteException ex) {
 			logger.error("Ошибка исполнения AJAX-запроса", ex);
-			logger.debug("Exception context:");
+			logger.debug("Request params:");
 			for (Entry<String, String[]> pair : request.getParameterMap().entrySet()) {
-				logger.debug("\tRequest param: " + pair.getKey() + " = '" + Arrays.toString(pair.getValue()));
+				logger.debug(pair.getKey() + " = " + Arrays.toString(pair.getValue()));
+			}
+			logger.debug("Request headers:");
+			Enumeration<String> hdrNames = request.getHeaderNames();
+			while (hdrNames.hasMoreElements()) {
+				String hdrName = hdrNames.nextElement(), hdrValue = "";
+				Enumeration<String> hdrValues = request.getHeaders(hdrName);
+
+				while (hdrValues.hasMoreElements()) {
+					hdrValue += ("\n\t" + hdrValues.nextElement());
+				}
+				logger.debug(hdrName + " =" + hdrValue);
 			}
 
 			switch (handler.getHandlerType()) {
