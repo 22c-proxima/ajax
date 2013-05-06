@@ -43,6 +43,14 @@ public final class AJAX extends HttpServlet {
 		loadHandlers(AJAX.class.getClassLoader());
 	}
 /**
+ * Выполнить действия по освобождению ресурсов, затребованных обработчиками
+ */
+	@Override public void destroy() {
+		for (AJAXHandler handler : handlers.values()) {
+			handler.destroy();
+		}
+	}
+/**
  * Метод загрузки AJAX-обработчиков из указанного загрузчика классов, использует {@link ServiceLoader}
  * @param	cl	Целевой загрузчик классов для исследования
  */

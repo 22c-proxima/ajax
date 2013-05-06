@@ -84,5 +84,9 @@ public abstract class CommonAJAXHandler implements AJAXHandler {
 	public static String getDefaultModuleName() {
 		return "core";
 	}
+/**
+ * Обычно освобождение ресурсов сверх GC не требуется
+ */
+	public void destroy(){}
 
 }

@@ -120,5 +120,9 @@ public interface AJAXHandler {
  * @throws AJAXExecuteException Работа AJAX-обработчика завершилась со сбоем
  */
 	Object process(JSONObject params) throws AJAXExecuteException;
+/**
+ * Вызывается при выгрузке сервлета из памяти, позволяет выполнить какие-либо действия по освобождению ресурсов
+ */
+	void destroy();
 
 }
