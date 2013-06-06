@@ -12,7 +12,7 @@
 
 	<groupId>ru.proxima.commons</groupId>
 	<artifactId>ajax</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.31-SNAPSHOT</version>
 
 	<name>AJAX/servlet implementation</name>
 	<description>Движок для автоматизированной загрузки классов, реализующих AJAX; удобного вызова и группирования их по модулям</description>

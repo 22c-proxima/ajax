@@ -72,10 +72,22 @@ public abstract class CommonAJAXHandler implements AJAXHandler {
 	}
 /**
  * Возвращает стандартный JSONObject с сообщением об ошибке
+ * @param message Сообщение об ошибке
  * @return JSONObject JSONObject с сообщением об ошибке
  */
 	public static JSONObject getErrorJSON(String message) {
 		return new JSONObject().put("error", new JSONObject().put("message", message));
+	}
+/**
+ * Возвращает стандартный JSONObject с сообщением об ошибке
+ * и пишет отладочное сообщение в логи с исключением
+ * @param message Сообщение об ошибке
+ * @param th Приведшее к ошибке исключение
+ * @return JSONObject JSONObject с сообщением об ошибке
+ */
+	public static JSONObject getErrorJSON(String message, Throwable th) {
+		ajaxLogger.error(message, th);
+		return getErrorJSON(message);
 	}
 /**
  * Возвращает имя модуля обработчиков по умолчанию
