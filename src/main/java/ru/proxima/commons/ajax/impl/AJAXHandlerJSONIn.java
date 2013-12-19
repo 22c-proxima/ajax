@@ -16,7 +16,7 @@ public abstract class AJAXHandlerJSONIn extends CommonAJAXHandler {
  * Это повлияет и на конвенцию для передаваемых параметров и возвращаемых значений
  * @return AJAXHandlerType AJAXHandlerType.JSON_INPUT
  */
-	public final AJAXHandlerType getAJAXHandlerType() {
+	public final AJAXHandlerType getHandlerType() {
 		return AJAXHandlerType.JSON_INPUT;
 	}
 /**
