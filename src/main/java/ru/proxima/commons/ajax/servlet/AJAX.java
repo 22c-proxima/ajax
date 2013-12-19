@@ -29,7 +29,7 @@ import ru.proxima.commons.json.JSONObject;
 @WebServlet(name="AJAX", urlPatterns="/AJAX")
 public final class AJAX extends HttpServlet {
 
-	private static HashMap<String, AJAXHandler> handlers = new HashMap<String, AJAXHandler>();
+	private static final HashMap<String, AJAXHandler> handlers = new HashMap<String, AJAXHandler>();
 	private static final Logger logger = LoggerFactory.getLogger(AJAX.class);
 
 	private String siteRoot;
@@ -64,9 +64,10 @@ public final class AJAX extends HttpServlet {
 		}
 	}
 /**
- * Метод загрузки AJAX-обработчиков из указанного загрузчика классов, использует {@link ServiceLoader}
+ * Метод загрузки AJAX-обработчика
  * @param	action	Имя AJAX-обработчика
  * @param	module	Модуль AJAX-обработчика
+ * @return AJAX-обработчик
  * @throws	UnsupportedOperationException	Недопустимые параметры, либо затребованный обработчик не обнаружен
  */
 	public static AJAXHandler getHandler(String action, String module)
