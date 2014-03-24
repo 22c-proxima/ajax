@@ -39,6 +39,13 @@ public final class AJAXRequest {
 		return request.getSession().getAttribute(name);
 	}
 /**
+ * Возвращает идентификатор сессии, которой принадлежит запрос
+ * @return Идентификатор сессии
+ */
+	public String getSessionId() {
+		return request.getSession().getId();
+	}
+/**
  * Устанавливает объект сессии данного запроса
  * @param name Имя параметра для получения
  * @param param Значение параметра
