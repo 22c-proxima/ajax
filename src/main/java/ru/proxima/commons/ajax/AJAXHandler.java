@@ -61,14 +61,14 @@ public interface AJAXHandler {
 	String getContentType();
 /**
  * Получение имени модуля группировки общих по какому-либо признаку обработчиков.
- * Используется при вызове модуля AJAX?[module=module_name&]action=xxx,
+ * Используется при вызове модуля AJAX?[module=module_name&amp;]action=xxx,
  * если не указан - подразумевается модуль core
  * @return String имя модуля
  */
 	String getModule();
 /**
  * Получение имени обработчика, используется имя класса обработчика.
- * Используется при вызове модуля AJAX?module=xxx&action=action_name
+ * Используется при вызове модуля AJAX?module=xxx&amp;action=action_name
  * @return String имя обработчика
  */
 	String getAction();
