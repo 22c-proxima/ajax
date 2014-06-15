@@ -39,7 +39,7 @@ public final class AJAX extends HttpServlet {
  * @param	sconf	не имеет значения
  */
 	@Override public void init(ServletConfig sconf) {
-		siteRoot = sconf.getServletContext().getRealPath("WEB-INF/").replaceFirst(".WEB-INF.?$", "");
+		siteRoot = sconf.getServletContext().getRealPath("/");
 		loadHandlers(AJAX.class.getClassLoader());
 	}
 /**
