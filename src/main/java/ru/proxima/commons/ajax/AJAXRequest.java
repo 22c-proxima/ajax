@@ -68,5 +68,12 @@ public final class AJAXRequest {
 	public List<FileItem> parseMultipartRequest() throws FileUploadException {
 		return new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 	}
+/**
+ * Если вышеуказанных методов не хватает :)
+ * @return Исходный объект запроса
+ */
+	public HttpServletRequest bare() {
+		return request;
+	}
 
 }

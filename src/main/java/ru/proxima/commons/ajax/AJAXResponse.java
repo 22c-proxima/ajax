@@ -49,5 +49,12 @@ public final class AJAXResponse {
 	public PrintWriter getWriter() throws IOException {
 		return response.getWriter();
 	}
+/**
+ * Если вышеуказанных методов не хватает :)
+ * @return Исходный объект ответа сервера
+ */
+	public HttpServletResponse response() {
+		return response;
+	}
 
 }
