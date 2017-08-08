@@ -1,6 +1,7 @@
 package ru.proxima.commons.ajax;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Properties;
@@ -13,16 +14,17 @@ import ru.proxima.commons.json.JSONObject;
  */
 public abstract class CommonAJAXHandler implements AJAXHandler {
 
-	public CommonAJAXHandler() {
-		params = new HashMap<String, String>();
-	}
 	private final HashMap<String, String> params;
+
+	public CommonAJAXHandler() {
+		params = new HashMap<>();
+	}
 /**
  * Установка различных параметров обработчика
  * @param name Имя параметра
  * @param value Значение параметра
  */
-	public final void setParam(String name, String value) {
+	@Override public final void setParam(String name, String value) {
 		params.put(name, value);
 	}
 /**
@@ -37,7 +39,7 @@ public abstract class CommonAJAXHandler implements AJAXHandler {
  * Получение имени обработчика (по сути - имя класса обработчика). Запрещён к переопределению
  * @return String имя обработчика
  */
-	public final String getAction() {
+	@Override public final String getAction() {
 		return this.getClass().getSimpleName();
 	}
 /**
@@ -45,7 +47,7 @@ public abstract class CommonAJAXHandler implements AJAXHandler {
  * Запрещён к переопределению
  * @return String имя модуля обработчика
  */
-	public final String getModule() {
+	@Override public final String getModule() {
 		String moduleName;
 		try {
 			Properties properties = new Properties();
@@ -66,7 +68,7 @@ public abstract class CommonAJAXHandler implements AJAXHandler {
  * Возвращает логгер для AJAX событий
  * @return Logger Логгер AJAX событий
  */
-	private static Logger ajaxLogger = LoggerFactory.getLogger("portal.ajax");
+	private static final Logger ajaxLogger = LoggerFactory.getLogger("portal.ajax");
 	protected static Logger getLogger() {
 		return ajaxLogger;
 	}
@@ -99,6 +101,51 @@ public abstract class CommonAJAXHandler implements AJAXHandler {
 /**
  * Обычно освобождение ресурсов сверх GC не требуется
  */
-	public void destroy(){}
+	@Override public void destroy(){}
+
+	@Override
+	public AJAXHandlerType getHandlerType() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public String getContentType() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public String getCrossDomains() {
+		return null;
+	}
+
+	@Override
+	public void process(AJAXRequest request, AJAXResponse response) throws AJAXExecuteException {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void process(AJAXRequest request, PrintWriter out) throws AJAXExecuteException {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void process(JSONObject params, AJAXResponse response) throws AJAXExecuteException {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void process(JSONObject params, PrintWriter out) throws AJAXExecuteException {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public Object process(AJAXRequest request) throws AJAXExecuteException {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public Object process(JSONObject params) throws AJAXExecuteException {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 
 }

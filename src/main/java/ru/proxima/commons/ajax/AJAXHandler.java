@@ -73,6 +73,12 @@ public interface AJAXHandler {
  */
 	String getAction();
 /**
+ * Возвращает список доменов, с которых разрешено делать Cross Domain Request.
+ * Для запрета - возвращайте null
+ * @return Домены для установки заголовка Access-Control-Allow-Origin
+ */
+	String getCrossDomains();
+/**
  * Обработка AJAX-запроса на самом низком уровне - используя обёртки классов
  * HttpServletRequest и HttpServletResponse
  * @param request Класс-обёртка HttpServletRequest

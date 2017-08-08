@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.ServiceLoader;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -29,7 +28,7 @@ import ru.proxima.commons.json.JSONObject;
 @WebServlet(name="AJAX", urlPatterns="/AJAX")
 public final class AJAX extends HttpServlet {
 
-	private static final HashMap<String, AJAXHandler> handlers = new HashMap<String, AJAXHandler>();
+	private static final HashMap<String, AJAXHandler> handlers = new HashMap<>();
 	private static final Logger logger = LoggerFactory.getLogger(AJAX.class);
 
 	private String siteRoot;
@@ -46,9 +45,7 @@ public final class AJAX extends HttpServlet {
  * Выполнить действия по освобождению ресурсов, затребованных обработчиками
  */
 	@Override public void destroy() {
-		for (AJAXHandler handler : handlers.values()) {
-			handler.destroy();
-		}
+		handlers.values().forEach(hndl -> hndl.destroy());
 	}
 /**
  * Метод загрузки AJAX-обработчиков из указанного загрузчика классов, использует {@link ServiceLoader}
@@ -91,9 +88,10 @@ public final class AJAX extends HttpServlet {
 		PrintWriter out;
 		AJAXRequest ajaxRequest = new AJAXRequest(request);
 		AJAXResponse ajaxResponse = new AJAXResponse(response);
+		String crossDomainAllowed;
 		String paramsStr = request.getParameter("params");
 		JSONObject params = null;
-		AJAXHandler handler = null;
+		AJAXHandler handler;
 
 		try {
 			handler = getHandler(request.getParameter("action"), request.getParameter("module"));
@@ -101,6 +99,11 @@ public final class AJAX extends HttpServlet {
 			logger.warn("Обращение к несуществующему обработчику", ex);
 			response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
 			return;
+		}
+
+		crossDomainAllowed = handler.getCrossDomains();
+		if (crossDomainAllowed != null) {
+			response.setHeader("Access-Control-Allow-Origin", crossDomainAllowed);
 		}
 
 		try {
@@ -158,9 +161,9 @@ public final class AJAX extends HttpServlet {
 		} catch (AJAXExecuteException ex) {
 			logger.error("Ошибка исполнения AJAX-запроса", ex);
 			logger.debug("Request params:");
-			for (Entry<String, String[]> pair : request.getParameterMap().entrySet()) {
+			request.getParameterMap().entrySet().forEach(pair -> {
 				logger.debug(pair.getKey() + " = " + Arrays.toString(pair.getValue()));
-			}
+			});
 			logger.debug("Request headers:");
 			Enumeration<String> hdrNames = request.getHeaderNames();
 			while (hdrNames.hasMoreElements()) {

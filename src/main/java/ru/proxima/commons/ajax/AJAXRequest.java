@@ -13,6 +13,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * @author Шомин Владимир, ЗАО ИВЦ Инсофт
  */
 public final class AJAXRequest {
+
+	private final HttpServletRequest request;
 /**
  * Единственный доступный конструктор. Параметром является объект класса
  * HttpServletRequest для оборачивания
@@ -21,7 +23,6 @@ public final class AJAXRequest {
 	public AJAXRequest(HttpServletRequest request) {
 		this.request = request;
 	}
-	private final HttpServletRequest request;
 /**
  * Оборачивает метод String getParameter(String name)
  * @param name Имя параметра для получения

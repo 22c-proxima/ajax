@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Шомин Владимир, ЗАО ИВЦ Инсофт
  */
 public final class AJAXResponse {
+
+	private final HttpServletResponse response;
 /**
  * Единственный доступный конструктор. Параметром является объект класса
  * HttpServletResponse для оборачивания
@@ -18,7 +20,6 @@ public final class AJAXResponse {
 	public AJAXResponse(HttpServletResponse response) {
 		this.response = response;
 	}
-	private final HttpServletResponse response;
 /**
  * Оборачивает метод void setContentType(String contentType)
  * @param contentType MIME-тип содержимого ответа

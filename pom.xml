@@ -3,16 +3,15 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
-		<project.build.testSourceEncoding>UTF-8</project.build.testSourceEncoding>
-		<project.build.testResourceEncoding>UTF-8</project.build.testResourceEncoding>
-	</properties>
+	<parent>
+		<groupId>com.reports</groupId>
+		<artifactId>parent-pom</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 
 	<groupId>ru.proxima.commons</groupId>
 	<artifactId>ajax</artifactId>
-	<version>0.321-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 
 	<name>AJAX/servlet implementation</name>
 	<description>Движок для автоматизированной загрузки классов, реализующих AJAX; удобного вызова и группирования их по модулям</description>
